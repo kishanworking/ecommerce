@@ -13,6 +13,7 @@ class Category(models.Model):
 
 
     # takeing url of perticular category 
+        # it is for global use also
     def get_url(self):
         return reverse('products_by_category', args=[self.slug])
 
