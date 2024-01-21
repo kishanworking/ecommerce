@@ -28,9 +28,8 @@ urlpatterns = [
 
     # linking to store app urls.py
     path('store/', include('store_app.urls')),
+    path('cart/', include('carts_app.urls')),
 
 
     
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
-
-
