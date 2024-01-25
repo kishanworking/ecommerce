@@ -51,10 +51,9 @@ $(document).ready(function() {
 		$('[data-toggle="tooltip"]').tooltip()
 	} // end if
 
-
-
-
-    
 }); 
 // jquery end
 
+setTimeout(() => {
+    $('#message').fadeOut('slow')
+}, 3000);
