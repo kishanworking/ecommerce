@@ -63,12 +63,12 @@ def login(request):
         password = request.POST['password']
 
         user = auth.authenticate(email=email, password=password)
-        print(user)
+        
 
         if user is not None:
             auth.login(request, user)
-
-            return redirect('home')
+            messages.success(request, 'You are now logged in.')
+            return redirect('dashboard')
         else:
             messages.error(request, 'Invalid login credentials')
             return redirect('login')
@@ -101,5 +101,7 @@ def activate(request, uidb64, token):
         return redirect('register')
     
 
+@login_required(login_url = 'login')
+def dashboard(request):
+    return render(request, 'accounts/dashboard.html')
 
-# http://127.0.0.1:8000/accounts/activate/MjI/c1emp8-6dfac89ee241202d22f2a69d5e33f395/
