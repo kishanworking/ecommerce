@@ -117,7 +117,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+# TIME_ZONE = 'UTC'
+TIME_ZONE =  'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -149,9 +150,15 @@ MESSAGE_TAGS = {
     
 }
 
+
+
+
+
+
 # SMTP configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'dubeykhushal1910@gmil.com'
-EMAIL_HOST_PASSWORD = 'khushal@1910'
+EMAIL_HOST_USER = 'dubeykishan1910@gmail.com'
+EMAIL_HOST_PASSWORD = 'jncvvxymfaiexwxc'
 EMAIL_USE_TLS = True
