@@ -60,7 +60,14 @@
                     </div>
                     <input type="text" class="form-control"  value="{{ i.quantity }}">
                     <div class="input-group-append">
-                    <a href="{% url 'add_cart' i.product.id %}" class="btn btn-light" type="button" id="button-minus"> <i class="fa fa-plus"></i> </a>
+                    <form action="{% url 'add_cart' i.product.id %}" method="POST">
+                        {% csrf_token %}
+                        {% for item in i.variations.all %}
+                        <input type="hidden" name="{{ item.variation_category | lower }}" value="{{ item.variation_value | capfirst }}" >
+                        {% endfor %}
+                        <button class="btn btn-light" type="submit" id="button-minus"> <i class="fa fa-plus"></i> </button>
+
+                    </form>
                     </div>
                 </div> <!-- input-group.// -->
             </div> <!-- col.// -->
@@ -68,7 +75,7 @@
         <td> 
             <div class="price-wrap"> 
                 <var class="price">$ {{i.sub_total}} </var> 
-                <small class="text-muted"> $ {{ i.product.price}} each</small> 
+                <small class="text-muted"> $ {{ i.product.price }} each</small> 
             </div> <!-- price-wrap .// -->
         </td>
         <td class="text-right"> 
