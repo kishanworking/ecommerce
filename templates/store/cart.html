@@ -41,7 +41,13 @@
                 <div class="aside"><img src="{{ i.product.images.url }}" class="img-sm"></div>
                 <figcaption class="info">
                     <a href="{{ i.product.get_url }}" class="title text-dark">{{ i.product.product_name }}</a>
-                    <p class="text-muted small">Color: 25 Mpx <br> Size: Canon</p>
+                    <p class="text-muted small">
+                        {% if i.variations.all %}
+                            {% for item in i.variations.all %}
+                                {{ item.variation_category | capfirst }} : {{ item.variation_value | capfirst }} <br>
+                            {% endfor %}
+                        {% endif %}
+                        
                 </figcaption>
             </figure>
         </td>
@@ -62,7 +68,7 @@
         <td> 
             <div class="price-wrap"> 
                 <var class="price">$ {{i.sub_total}} </var> 
-                <small class="text-muted"> $ {{ i.product.price}} </small> 
+                <small class="text-muted"> $ {{ i.product.price}} each</small> 
             </div> <!-- price-wrap .// -->
         </td>
         <td class="text-right"> 
@@ -98,7 +104,7 @@
                 <p class="text-center mb-3">
                     <img src="{% static './images/misc/payments.png' %}" height="29">
                 </p>
-                <a href="./place-order.html" class="btn btn-primary btn-block"> Checkout </a>
+                <a href="{% url 'checkout' %}" class="btn btn-primary btn-block"> Checkout </a>
                 <a href="{% url 'store' %}" class="btn btn-light btn-block">Continue Shopping</a>
             </div> <!-- card-body.// -->
             </div> <!-- card.// -->

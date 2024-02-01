@@ -16,16 +16,16 @@ from django.http import HttpResponse
 def store(request, category_slug=None):
 
     categories = None 
-    products = None
+    products   = None  
 
     # show data categories wies 
     if category_slug != None:
-        categories = get_object_or_404(Category, slug=category_slug)
-        products = Product.objects.filter(category=categories, is_available=True)
+        categories    = get_object_or_404(Category, slug=category_slug)
+        products      = Product.objects.filter(category=categories, is_available=True)
         
         # for paginator logic
         paginator = Paginator(products,3)
-        page = request.GET.get('page')
+        page      = request.GET.get('page')
         paged_products = paginator.get_page(page)
 
         product_count = products.count()
@@ -34,7 +34,7 @@ def store(request, category_slug=None):
         
         # for paginator logic
         paginator = Paginator(products,3)
-        page = request.GET.get('page')
+        page      = request.GET.get('page')
         paged_products = paginator.get_page(page)
 
         product_count = products.count()
@@ -58,9 +58,9 @@ def product_detail(request, category_slug, product_slug):
     
     context = {
         'single_product' : single_product,
-        'in_cart '  : in_cart,
+        'in_cart '       : in_cart,
         }
-
+    
     return render(request, 'store/product_detail.html', context)
 
 def search(request):
